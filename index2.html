@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Display</title>
+</head>
+<body>
+  <div id="data-container"></div>
+
+  <script>
+    // Get a reference to the data container
+    const dataContainer = document.getElementById("data-container");
+
+    // Function to display the fetched data
+    const displayData = (data) => {
+      // Process the fetched data
+      // Here, you can manipulate the data as needed
+      console.log(data); // Output the fetched data to the console
+
+      // Display the fetched data in the HTML
+      dataContainer.innerHTML = `
+        <h2>User ID: ${data.id}</h2>
+        <p>Name: ${data.name}</p>
+        <p>Username: ${data.username}</p>
+        <p>Email: ${data.email}</p>
+      `;
+    };
+
+    // Fetch the API data
+    fetch("https://fantasy.premierleague.com/api/entry/98757/")
+      .then(response => response.json())
+      .then(data => {
+        // Call the displayData function to show the fetched data
+        displayData(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the fetch request
+        console.log("Error fetching data:", error);
+      });
+  </script>
+</body>
+</html>
